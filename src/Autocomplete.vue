@@ -61,7 +61,7 @@ export default {
     inputChange () {
       this.showList = true
       this.cursor = 0
-      this.onSelectItem(null, 'inputChange')
+      this.internalItems = []
       utils.callUpdateItems(this.searchText, this.updateItems)
       this.$emit('change', this.searchText)
     },
@@ -90,8 +90,6 @@ export default {
         this.internalItems = [item]
         this.searchText = this.getLabel(item)
         this.$emit('item-selected', item)
-      } else {
-        this.setItems(this.items)
       }
       this.$emit('input', item)
     },
@@ -128,6 +126,8 @@ export default {
       if (this.showList && this.internalItems[this.cursor]) {
         this.onSelectItem(this.internalItems[this.cursor])
         this.showList = false
+      } else {
+        this.$emit('enter', this.searchText)
       }
     },
 
