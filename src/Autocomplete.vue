@@ -1,12 +1,12 @@
 <template lang="html">
   <div class="v-autocomplete">
     <div class="v-autocomplete-input-group" :class="{'v-autocomplete-selected': value}">
-      <input type="text" v-model="searchText" v-bind="inputAttrs" 
+      <input type="text" v-model="searchText" v-bind="inputAttrs"
             :class="inputAttrs.class || inputClass"
             :placeholder="inputAttrs.placeholder || placeholder"
             :disabled="inputAttrs.disabled || disabled"
             @blur="blur" @focus="focus" @input="inputChange"
-            @keyup.enter="keyEnter" @keydown.tab="keyEnter" 
+            @keyup.enter="keyEnter" @keydown.tab="keyEnter"
             @keydown.up="keyUp" @keydown.down="keyDown">
     </div>
     <div class="v-autocomplete-list" v-if="show">
@@ -61,7 +61,6 @@ export default {
     inputChange () {
       this.showList = true
       this.cursor = 0
-      this.internalItems = []
       utils.callUpdateItems(this.searchText, this.updateItems)
       this.$emit('change', this.searchText)
     },
